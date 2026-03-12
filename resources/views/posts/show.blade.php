@@ -94,4 +94,86 @@ Post Creator
 
 </div>
 
+<h3 class="mt-6 my-10 text-lg font-semibold text-gray-800" style="margin-bottom: 24px;">
+Comments
+</h3>
+
+<div class="space-y-3">
+
+@forelse($post->comments as $comment)
+
+<div  style="margin-bottom: 24px;" class="bg-gray-50 border rounded-lg p-4 mb-3 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 hover:shadow-sm transition">
+
+<div class="flex items-start gap-3">
+
+<!-- Avatar -->
+<div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
+{{ strtoupper(substr($comment->body,0,1)) }}
+</div>
+
+<!-- Comment Text -->
+<div>
+
+<p class="text-gray-700 text-sm">
+{{ $comment->body }}
+</p>
+
+<p class="text-xs text-gray-400 mt-1">
+{{ $comment->created_at->diffForHumans() }}
+</p>
+
+</div>
+
+</div>
+
+<!-- Delete Button -->
+<form action="{{ route('comments.destroy',$comment->id) }}" method="POST" class="mt-2 sm:mt-0 sm:ml-auto">
+@csrf
+@method('DELETE')
+
+<button
+class="text-red-500 hover:text-red-600 text-sm font-medium cursor-pointer ">
+Delete
+</button>
+
+</form>
+
+</div>
+
+@empty
+
+<p class="text-gray-400 text-sm">
+No comments yet.
+</p>
+
+@endforelse
+
+</div>
+
+<!-- Comment Form -->
+<div class="mt-6 bg-white shadow-md rounded-lg p-4">
+
+<h3 class="text-lg font-semibold text-gray-800 mb-3">
+Add Comment
+</h3>
+
+<form action="{{ route('comments.store',$post->id) }}" method="POST">
+@csrf
+
+<textarea 
+name="body"
+rows="3"
+placeholder="Write your comment..."
+class="w-full rounded-md border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
+></textarea>
+
+<button
+class="mt-3 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+Add Comment
+</button>
+
+</form>
+
+</div>
+
 @endsection

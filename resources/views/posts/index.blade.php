@@ -55,10 +55,11 @@ Edit
     @csrf
     @method("DELETE")
 
-    <button class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
-        Delete
-    </button>
-</form>
+    
+       @include("components.dialog", ['postId' => $post->id])
+         
+
+   </form>
 
 
 </div>
@@ -78,25 +79,7 @@ Edit
 <!-- Pagination -->
 <div class="mt-6 flex justify-center space-x-2">
 
-<button class="px-3 py-1 border rounded bg-white hover:bg-gray-100">
-Previous
-</button>
-
-<button class="px-3 py-1 border rounded bg-blue-500 text-white">
-1
-</button>
-
-<button class="px-3 py-1 border rounded bg-white hover:bg-gray-100">
-2
-</button>
-
-<button class="px-3 py-1 border rounded bg-white hover:bg-gray-100">
-3
-</button>
-
-<button class="px-3 py-1 border rounded bg-white hover:bg-gray-100">
-Next
-</button>
+{{ $posts->onEachSide(5)->links() }}
 
 </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 class PostController extends Controller
 {
     /*
@@ -24,7 +25,7 @@ class PostController extends Controller
       //  dd($posts); // die Dump to check the data
 
 
-      $posts = Post::all();
+      $posts = Post::paginate(20);
 
         return view('posts.index', compact('posts'));
     }
@@ -94,14 +95,17 @@ class PostController extends Controller
             "description" => $request->description,
             "author_id" => $request->author_id
         ]);
-        
+
         return to_route("posts.index");
     }
 
     public function destroy($id)
     {
-        echo "Deleting Post with ID: " . $id;
-        return;
+        $post = Post::findOrFail($id);
+        $post->comments()->delete();
+        $post->delete();
+        
+     
         return to_route("posts.index");
     }
 }
