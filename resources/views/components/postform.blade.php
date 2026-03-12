@@ -47,13 +47,12 @@ Post Creator
 </label>
 
 <select
-name="user_id"
+name="author_id"
 class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500"
 >
-
-<option value="1" {{ isset($post) && $post['author'] == "Ahmed" ? 'selected' : '' }}>Ahmed</option>
-<option value="2" {{ isset($post) && $post['author'] == "Ali" ? 'selected' : '' }}>Ali</option>
-<option value="3" {{ isset($post) && $post['author'] == "Mohamed" ? 'selected' : '' }}>Mohamed</option>
+@foreach ($users as $user)
+<option value="{{ $user->id }}" {{ isset($post) && $post->author_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+@endforeach
 
 </select>
 </div>

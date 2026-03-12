@@ -32,26 +32,26 @@ Create Post
 @foreach ($posts as $post)
     
 <tr class="border-t">
-<td class="p-3">{{ $post["id"]}}</td>
-<td class="p-3">{{ $post["title"] }}</td>
-<td class="p-3">{{ $post["author"] }}</td>
-<td class="p-3">{{ $post["create_at"] }}</td>
+<td class="p-3">{{ $post->id}}</td>
+<td class="p-3">{{ $post->title }}</td>
+<td class="p-3">{{ $post->user?->name }}</td>
+<td class="p-3">{{ date('Y-m-d', strtotime($post->created_at)) }}</td>
 <td class="p-3 space-x-2">
     
 <div class="flex items-center gap-2">
 
 <a class="bg-teal-500 text-white px-3 py-1 rounded text-sm hover:bg-teal-600"
-   href="{{ route('posts.show', ['id'=>$post['id']]) }}">
+   href="{{ route('posts.show', ['id'=>$post->id]) }}">
 View
 </a>
 
 <a class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600"
-   href="{{ route('posts.edit', ['id'=>$post['id']]) }}">
+   href="{{ route('posts.edit', ['id'=>$post->id]) }}">
 Edit
 </a>
 
 <form method="POST"
-      action="{{ route('posts.destroy', ['id'=>$post['id']]) }}">
+      action="{{ route('posts.destroy', ['id'=>$post->id]) }}">
     @csrf
     @method("DELETE")
 
@@ -59,6 +59,7 @@ Edit
         Delete
     </button>
 </form>
+
 
 </div>
 

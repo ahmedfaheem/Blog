@@ -1,5 +1,5 @@
 @extends("components.app")
-@section("title", "Post Page " . $post['id'])
+@section("title", "Post Page " . $post->id)
 
 @section("content")
 
@@ -8,7 +8,7 @@
 <div class="max-w-5xl mx-auto py-12 px-6">
 
 <h1 class="text-3xl font-bold text-gray-800 mb-8">
-Post Details # {{ $post['id'] }}
+Post Details # {{ $post->id }}
 </h1>
 
 <div class="grid md:grid-cols-2 gap-6">
@@ -27,14 +27,14 @@ Post Info
 <div>
 <p class="text-sm text-gray-500">Title</p>
 <p class="text-lg font-semibold text-gray-800">
-{{ $post['title'] }}
+{{ $post->title }}
 </p>
 </div>
 
 <div>
 <p class="text-sm text-gray-500">Description</p>
 <p class="text-gray-600 leading-relaxed">
-{{ $post['description'] }}
+{{ $post->description }}
 </p>
 </div>
 
@@ -60,7 +60,7 @@ Post Creator
 </div>
 <div>
 <p class="text-sm text-gray-500">Name</p>
-<p class="font-medium text-gray-800">{{ $post['author'] }}</p>
+<p class="font-medium text-gray-800">{{ $post->user?->name }}</p>
 </div>
 </div>
 
@@ -70,7 +70,7 @@ Post Creator
 </div>
 <div>
 <p class="text-sm text-gray-500">Email</p>
-<p class="font-medium text-gray-800">{{ $post['email'] }}</p>
+<p class="font-medium text-gray-800">{{ $post->user?->email }}</p>
 </div>
 </div>
 
@@ -81,7 +81,7 @@ Post Creator
 <div>
 <p class="text-sm text-gray-500">Created At</p>
 <p class="font-medium text-gray-800">
-T{{ $post['create_at'] }}
+{{   date("l jS \of F Y h:i:s A", strtotime($post->created_at)) }}
 </p>
 </div>
 </div>
