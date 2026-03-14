@@ -4,7 +4,7 @@
 @yield("FormTitle", $FormTitle)
 </h2>
 
-<form class="space-y-6" action="{{ $postAction }}" method="POST">
+<form class="space-y-6" action="{{ $postAction }}" method="POST" enctype="multipart/form-data">
 @csrf
 @if(isset($formMethod) && strtoupper($formMethod) !== 'POST')
     @method($formMethod)
@@ -14,15 +14,41 @@
 <label class="block text-sm font-medium text-gray-700 mb-2">
 Title
 </label>
-
 <input
 type="text"
 name="title"
 placeholder="Enter post title"
-class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500"
+class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 @error('title') is-invalid @enderror"
 value="{{ $post['title'] ?? '' }}"
 />
+@error('title')
+    <p style="color:red;margin:5px 0">{{ $message }}</p>
+@enderror
+
 </div>
+
+<!-- Image -->
+
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">
+Post Image
+</label>
+<input
+type="file"
+name="image"
+accept=".jpg,.png"
+class="block w-full text-sm text-slate-700 border border-slate-300 rounded-xl cursor-pointer bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-l-xl file:border-0 file:text-sm file:font-medium file:bg-indigo-600 file:text-white hover:file:bg-indigo-700"
+/>
+<p class="mt-2 text-xs text-slate-500">Allowed formats: JPG, PNG</p>
+@if(isset($post) && $post->image)
+    <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="mt-4 h-52 w-full max-w-md rounded-xl border border-slate-200 object-cover shadow-sm">
+@endif
+@error('image')
+    <p style="color:red;margin:5px 0">{{ $message }}</p>
+@enderror
+
+</div>
+
 
 
 <!-- Description -->
@@ -37,6 +63,9 @@ rows="5"
 placeholder="Write your post description..."
 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500"
 >{{ $post['description'] ?? '' }}</textarea>
+@error('description')
+    <p style="color:red;margin:5px 0">{{ $message }}</p>
+@enderror
 </div>
 
 
@@ -55,6 +84,9 @@ class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 
 @endforeach
 
 </select>
+@error('author_id')
+    <p style="color:red;margin:5px 0">{{ $message }}</p>
+@enderror
 </div>
 
 

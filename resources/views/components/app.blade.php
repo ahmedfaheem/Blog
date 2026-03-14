@@ -17,7 +17,7 @@
 </div>
 </nav>
 
-<div class="max-w-6xl mx-auto mt-8 bg-white shadow rounded-lg p-6">
+<div class="max-w-7xl mx-auto mt-8 bg-white shadow rounded-lg p-6 mb-20">
 
 @yield('content')
 
