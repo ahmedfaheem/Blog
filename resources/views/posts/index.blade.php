@@ -46,7 +46,7 @@ Slug: <span class="font-medium text-slate-700">{{ $post->slug }}</span>
    href="{{ route('posts.show', ['id'=>$post->id]) }}">
 View
 </a>
-
+@if(Auth::check() && Auth::user()->id === $post->author_id)
 <a class="bg-blue-600 text-white px-3 py-1.5 rounded-md text-sm hover:bg-blue-700 transition"
    href="{{ route('posts.edit', ['id'=>$post->id]) }}">
 Edit
@@ -57,6 +57,8 @@ Edit
 @method("DELETE")
 @include("components.dialog", ['postId' => $post->id])
 </form>
+@endif
+
 </div>
 </div>
 </article>

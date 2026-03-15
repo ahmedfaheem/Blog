@@ -72,21 +72,16 @@ class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:rin
 <!-- Post Creator -->
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">
-Post Creator
+Post Creator : {{ $user->name }}
 </label>
 
-<select
-name="author_id"
-class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-indigo-500"
->
-@foreach ($users as $user)
-<option value="{{ $user->id }}" {{ isset($post) && $post->author_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-@endforeach
+<div class="author">
+    <input type="hidden" name="author_id" value="{{ $user->id }}">
+</div>
+
 
 </select>
-@error('author_id')
-    <p style="color:red;margin:5px 0">{{ $message }}</p>
-@enderror
+
 </div>
 
 

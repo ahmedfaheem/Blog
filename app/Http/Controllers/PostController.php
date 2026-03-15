@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\PruneOldPostsJob;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -49,10 +51,9 @@ class PostController extends Controller
 
     public function create()
     {
-        $users = User::all();
-
+         $user = Auth::user();
         return view('posts.create', [
-            'users' => $users,
+            'user' => $user,
         ]);
     }
 
@@ -85,10 +86,14 @@ class PostController extends Controller
         //             break;
         //         }
         //     }
-        $users = User::all();
+       
+        $user = Auth::user();
         $post = Post::findOrFail($id);
-
-        return view('posts.edit', ['post' => $post, 'id' => $id, 'users' => $users]);
+        if (Auth::user()->id != $post->author_id) {
+            abort(403);
+        }
+        
+        return view('posts.edit', ['post' => $post, 'id' => $id, 'user' => $user]);
     }
 
     public function update(StorePostRequest $request, $id)
