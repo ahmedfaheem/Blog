@@ -41,7 +41,7 @@ class="block w-full text-sm text-slate-700 border border-slate-300 rounded-xl cu
 />
 <p class="mt-2 text-xs text-slate-500">Allowed formats: JPG, PNG</p>
 @if(isset($post) && $post->image)
-    <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="mt-4 h-52 w-full max-w-md rounded-xl border border-slate-200 object-cover shadow-sm">
+    <img src="{{ $post->image }}" alt="Post Image" class="mt-4 h-52 w-full max-w-md rounded-xl border border-slate-200 object-cover shadow-sm">
 @endif
 @error('image')
     <p style="color:red;margin:5px 0">{{ $message }}</p>

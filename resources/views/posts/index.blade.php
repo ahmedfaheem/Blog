@@ -23,7 +23,7 @@ Create Post
 @forelse ($posts as $post)
 <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
 @if(!empty($post->image))
-<img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }} image" class="h-48 w-full object-cover">
+<img src="{{ $post->image }}" alt="{{ $post->title }} image" class="h-48 w-full object-cover">
 @else
 <div class="h-48 w-full bg-gradient-to-br from-slate-100 to-slate-200"></div>
 @endif

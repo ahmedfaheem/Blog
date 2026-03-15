@@ -27,7 +27,7 @@ Published {{ $post->created_at->diffForHumans() }}
 
 <div class="p-6 space-y-6">
 @if(!empty($post->image))
-<img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }} image" class="w-full max-h-[26rem] rounded-xl object-cover border border-slate-200">
+<img src="{{ $post->image }}" alt="{{ $post->title }} image" class="w-full max-h-[26rem] rounded-xl object-cover border border-slate-200">
 @endif
 
 <div>

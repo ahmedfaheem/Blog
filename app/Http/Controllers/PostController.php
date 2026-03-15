@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\PruneOldPostsJob;
 
 class PostController extends Controller
 {
@@ -20,6 +21,8 @@ class PostController extends Controller
     public function index()
     {
 
+      
+       //  PruneOldPostsJob::dispatch();
         //  $posts = $this->posts;
 
         //  dd($posts); // die Dump to check the data

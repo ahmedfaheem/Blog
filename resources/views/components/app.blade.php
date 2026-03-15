@@ -12,7 +12,7 @@
 <!-- Navbar -->
 <nav class="bg-gray-800 text-white p-4">
 <div class="max-w-6xl mx-auto flex justify-between">
-<h1 class="text-lg font-semibold">ITI Blog</h1>
+<h1 class="text-lg font-semibold"><a href="{{ route("posts.index") }}" class="text-white hover:text-gray-300">ITI Blog</a></h1>
 <a href="{{ route("posts.index") }}" class="text-gray-300 hover:text-white">All Posts</a>
 </div>
 </nav>
