@@ -1,5 +1,5 @@
 
-@extends("components.app")
+@extends("components.layout")
 @section("title", "Posts")
 
 

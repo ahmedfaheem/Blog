@@ -1,4 +1,4 @@
-@extends("components.app")
+@extends("components.layout")
 @section("title", "Post Page " . $post->id)
 
 @section("content")
