@@ -34,7 +34,7 @@ Are you sure you want to delete this post? This action cannot be undone.
 <button
 type="button"
 onclick="document.getElementById('delete-dialog-{{ $postId }}').close()"
-class="px-4 py-2 rounded-md bg-white hover:bg-gray-600 text-gray-200 text-sm font-medium transition">
+class="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium transition">
 Cancel
 </button>
 
